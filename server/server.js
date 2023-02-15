@@ -21,6 +21,19 @@ const socket = require("socket.io");
 // });
 
 const io = socket(http);
+// --------------------------
+//#region IPLOGGING
+// --------------------------
+app.use(requestIp.mw());
+let theirIp = "";
+app.use((req, res, next) => {
+  const clientIp = requestIp.getClientIp(req);
+  theirIp = clientIp;
+  console.log(`Client IP address: ${theirIp}`);
+  next();
+});
+
+//#endregion IPLOGGING
 
 // logging middleware
 app.use(morgan("dev"));
@@ -37,7 +50,7 @@ app.use("/api", require("./api")); // matches all requests to /api
 app.use("/auth", require("./auth")); // matches all requests to /auth
 
 io.on("connection", (socket) => {
-  console.log(`User: ${socket.id} just connected!`);
+  console.log(`User: ${socket.id} just connected! Their IP: ${theirIp}`);
 
   socket.on("add-list", (newList) => {
     socket.broadcast.emit("add-list", newList);
@@ -103,19 +116,6 @@ io.on("connection", (socket) => {
     console.log("a user disconnected");
   });
 });
-
-// --------------------------
-//#region IPLOGGING
-// --------------------------
-app.use(requestIp.mw());
-
-app.use((req, res, next) => {
-  const clientIp = requestIp.getClientIp(req);
-  console.log(`Client IP address: ${clientIp}`);
-  next();
-});
-
-//#endregion IPLOGGING
 
 app.get("/", (req, res) =>
   res.sendFile(path.join(__dirname, "..", "public/index.html"))
