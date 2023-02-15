@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from "../features/auth/authSlice";
-import { Button, Stack, TextField, Paper, Grid, Box, Link } from "@mui/material";
+import {
+  Button,
+  Stack,
+  TextField,
+  Paper,
+  Grid,
+  Box,
+  Link,
+} from "@mui/material";
 import { positions } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 
@@ -15,10 +23,9 @@ const Signup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
   const handleSignup = async () => {
-    console.log("SignUp was clicked")
-    
+    console.log("SignUp was clicked");
+
     if (!email || !password) {
       alert("All fields must be completed to sign up.");
     } else {
@@ -57,7 +64,7 @@ const Signup = () => {
         <TextField
           style={{ width: "200px", margin: "5px" }}
           type="text"
-          label="firstName"
+          label="First Name"
           size="small"
           variant="outlined"
           onChange={(evt) => setFirstName(evt.target.value)}
@@ -65,7 +72,7 @@ const Signup = () => {
         <TextField
           style={{ width: "200px", margin: "5px" }}
           type="text"
-          label="lastName"
+          label="Last Name"
           size="small"
           variant="outlined"
           onChange={(evt) => setLastName(evt.target.value)}
@@ -73,7 +80,7 @@ const Signup = () => {
         <TextField
           style={{ width: "200px", margin: "5px" }}
           type="email"
-          label="email"
+          label="E-Mail"
           size="small"
           variant="outlined"
           onChange={(evt) => setEmail(evt.target.value)}
@@ -81,7 +88,7 @@ const Signup = () => {
         <TextField
           style={{ width: "200px", margin: "5px" }}
           type="password"
-          label="password"
+          label="Password"
           size="small"
           variant="outlined"
           onChange={(evt) => setPassword(evt.target.value)}

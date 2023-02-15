@@ -43,6 +43,9 @@ const User = db.define("user", {
     type: Sequelize.STRING,
     defaultValue: "coolTheme",
   },
+  ip: {
+    type: Sequelize.STRING,
+  },
 });
 
 module.exports = User;
