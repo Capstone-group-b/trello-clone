@@ -31,7 +31,7 @@ const Themes = ({themes}) => {
       flexDirection: "column", 
       justifyContent: "center" 
     }}>
-      <Box sx={{display: "flex", justifyContent: "center"}}>
+      <Box>
         <Typography variant="h5">Choose a Theme</Typography>
       </Box>
       <br />

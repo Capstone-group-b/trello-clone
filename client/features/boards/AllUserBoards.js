@@ -28,7 +28,7 @@ const UserBoards = ({theme}) => {
       <br />
       <Typography variant="h5">Your Boards</Typography>
       <br />
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         {allUserBoards && allUserBoards.length
           ? allUserBoards.map(({ board }, index) => {
               return (
@@ -52,7 +52,7 @@ const UserBoards = ({theme}) => {
               );
             })
           : null}
-        <Grid item >
+        <Grid item xs={2} >
           <CreateBoardFormMUI theme={theme} />
         </Grid>
       </Grid>
