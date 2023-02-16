@@ -150,7 +150,7 @@ const Main = () => {
               <Route path="/:user" element={<Home theme={handleTheme()} />} />
               <Route path="/board/:boardId" element={<SingleBoard />} />
               <Route path="/themes" element={<Themes themes={themes} />} />
-              <Route path="/myProfile" element={<MyUserProfile />} />
+              <Route path="/myProfile" element={<MyUserProfile theme={handleTheme()} />} />
               <Route path="/calendar" element={<MyCalendar />} />
             </Routes>
           ) : (

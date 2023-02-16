@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { updateMyProfileImage } from "../singleBoard/singleBoardSlice";
@@ -14,7 +14,7 @@ import EditIcon from "@mui/icons-material/Edit";
 
 // If page is self-contained it doesn't need to be sent to the store.
 
-function UserProfile() {
+function UserProfile({theme}) {
   const [addImage, setAddImage] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -25,7 +25,7 @@ function UserProfile() {
   const [passwordVerify, setPasswordVerify] = useState("");
   const user = useSelector((state) => state.auth.me);
   const dispatch = useDispatch();
-
+  // const inputRef = useRef("");
 
   const handleImageUpdate = () => {
     console.log("handleImageUpdate has been clicked", profilePicture);
@@ -101,33 +101,45 @@ function UserProfile() {
             />
           </IconButton>
         </Box>
-      ) : (
-        <Button onClick={() => setAddImage(true)}>Add Profile Pic</Button>
-      )}
+      ) : null }
       <br />
       {addImage ? (
         <Box
         sx={{
-          marginBottom: 5
+          marginBottom: 2
         }}>
           <TextField
+            // inputRef={inputRef}
             placeholder="Link to jpg or png"
             size="small"
             onChange={(event) => setProfilePicture(event.target.value)}
-            sx={{backgroundColor: "white"}}
+            onBlur={() => setAddImage(false)}
+            sx={{bgcolor: theme.palette.neutral.contrastText}}
           />
           <Button
             color="neutral"
             variant="contained"
-            style={{ justifyContent: "flex-start", textTransform: "none" }}
-            onClick={handleImageUpdate}
+            style={{ justifyContent: "flex-start", textTransform: "none", marginLeft: 4 }}
+            onClick={() => {
+              handleImageUpdate();
+              setAddImage(false);
+            }}
           >
             Set Photo
           </Button>
         </Box>
-      ) : null}
+      ) : (
+        <Button onClick={() => {
+          setAddImage(true);
+          // inputRef.current.focus();
+        }}>
+          Add Profile Pic
+        </Button>
+      )}
 
-        <Typography variant="h4">Welcome to your profile, {user.firstName}</Typography>
+        <Typography variant="h4" sx={{margin: 0.5}}>
+          Welcome to your profile, {user.firstName}
+        </Typography>
 
         <Box
           sx={{
@@ -137,23 +149,23 @@ function UserProfile() {
             // padding: 5
           }}
         >
-      <TextField
+          <TextField
             defaultValue={user.firstName}
             size="small"
             onChange={(event) => setFirstName(event.target.value)}
-            sx={{backgroundColor: "white", margin: 1,}}
+            sx={{bgcolor: theme.palette.neutral.contrastText, margin: 1,}}
           />
           <TextField
             defaultValue={user.lastName}
             size="small"
             onChange={(event) => setLastName(event.target.value)}
-            sx={{backgroundColor: "white", margin: 1}}
+            sx={{bgcolor: theme.palette.neutral.contrastText, margin: 1}}
           />
           <TextField
             defaultValue={user.email}
             size="small"
             onChange={(event) => setEmail(event.target.value)}
-            sx={{backgroundColor: "white", margin: 1}}
+            sx={{bgcolor: theme.palette.neutral.contrastText, margin: 1}}
           />
           <TextField
           type="password"
@@ -161,7 +173,7 @@ function UserProfile() {
             placeholder="Password"
             size="small"
             onChange={(event) => setPassword(event.target.value)}
-            sx={{backgroundColor: "white", margin: 1}}
+            sx={{bgcolor: theme.palette.neutral.contrastText, margin: 1}}
           />
           <TextField
           type="password"
@@ -169,15 +181,17 @@ function UserProfile() {
             placeholder="Password Verify"
             size="small"
             onChange={(event) => setPasswordVerify(event.target.value)}
-            sx={{backgroundColor: "white", margin: 1}}
+            sx={{bgcolor: theme.palette.neutral.contrastText, margin: 1}}
           />
           <Button
           onClick={handleSubmit}
-          variant="outlined"
+          color="neutral"
+          variant="contained"
           sx={{margin: 1}}
           >
-            Update</Button>
-          </Box>
+            Update
+          </Button>
+        </Box>
       {/* <p>First Name</p>
       <form onSubmit={handleSubmit}>
         <input
