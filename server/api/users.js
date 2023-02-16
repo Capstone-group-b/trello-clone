@@ -74,6 +74,22 @@ router.put("/changeUser/:userId", async (req, res, next) => {
   }
 });
 
+// --------------------------
+//#region Update Theme
+// --------------------------
+// PATCH // api/users/updateTheme/:userId
+
+router.patch("/updateTheme/:userId", async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const { theme } = req.body;
+    res.status(201).json(theme)
+  } catch (err) {
+    next(err);
+  }
+});
+//#endregion Update Theme
+
 // PATCH // api/users/uploadProfilePicture/userId/:userId
 router.patch("/uploadProfilePicture/userId/:userId", async (req, res, next) => {
   try {
