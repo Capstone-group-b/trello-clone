@@ -28,11 +28,11 @@ const UserBoards = ({theme}) => {
       <br />
       <Typography variant="h5">Your Boards</Typography>
       <br />
-      <Grid container spacing={1}>
+      <Grid container spacing={2}>
         {allUserBoards && allUserBoards.length
           ? allUserBoards.map(({ board }, index) => {
               return (
-                <Grid item xs={4} key={`board#${index}`}>
+                <Grid item key={`board#${index}`}>
                   <Card sx={{height: 100, width: 200, minWidth: 200}}>
                     <CardActionArea
                       onClick={() => navigate(`/board/${board.id}`)}
@@ -52,7 +52,7 @@ const UserBoards = ({theme}) => {
               );
             })
           : null}
-        <Grid item xs={2} >
+        <Grid item >
           <CreateBoardFormMUI theme={theme} />
         </Grid>
       </Grid>
