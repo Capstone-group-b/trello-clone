@@ -8,7 +8,7 @@ import {
   IconButton,
   TextField,
   Button,
-  Typography,
+  Typography
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
@@ -67,11 +67,12 @@ function UserProfile({theme}) {
   }, [user]);
 
   return (
-    <>
+    <Box sx={{minWidth: 420}}>
       <br />
       <br />
       {user.imageUrl ? (
         <Box
+          container
           sx={{
             display: "flex",
             flexDirection: "row",
@@ -137,113 +138,61 @@ function UserProfile({theme}) {
         </Button>
       )}
 
-        <Typography variant="h4" sx={{margin: 0.5}}>
-          Welcome to your profile, {user.firstName}
-        </Typography>
+      <Typography variant="h4" sx={{margin: 1, mb: 2}}>
+        Welcome to your profile, {user.firstName}
+      </Typography>
 
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            width: 250,
-            // padding: 5
-          }}
-        >
-          <TextField
-            defaultValue={user.firstName}
-            size="small"
-            onChange={(event) => setFirstName(event.target.value)}
-            sx={{bgcolor: theme.palette.neutral.contrastText, margin: 1,}}
-          />
-          <TextField
-            defaultValue={user.lastName}
-            size="small"
-            onChange={(event) => setLastName(event.target.value)}
-            sx={{bgcolor: theme.palette.neutral.contrastText, margin: 1}}
-          />
-          <TextField
-            defaultValue={user.email}
-            size="small"
-            onChange={(event) => setEmail(event.target.value)}
-            sx={{bgcolor: theme.palette.neutral.contrastText, margin: 1}}
-          />
-          <TextField
-          type="password"
-          label="password"
-            placeholder="Password"
-            size="small"
-            onChange={(event) => setPassword(event.target.value)}
-            sx={{bgcolor: theme.palette.neutral.contrastText, margin: 1}}
-          />
-          <TextField
-          type="password"
-          label="password"
-            placeholder="Password Verify"
-            size="small"
-            onChange={(event) => setPasswordVerify(event.target.value)}
-            sx={{bgcolor: theme.palette.neutral.contrastText, margin: 1}}
-          />
-          <Button
-          onClick={handleSubmit}
-          color="neutral"
-          variant="contained"
-          sx={{margin: 1}}
-          >
-            Update
-          </Button>
-        </Box>
-      {/* <p>First Name</p>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="First Name"
-          value={firstName}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          width: 300,
+        }}
+      >
+        <TextField
+          defaultValue={user.firstName}
+          size="small"
           onChange={(event) => setFirstName(event.target.value)}
+          sx={{bgcolor: theme.palette.neutral.contrastText, margin: 1,}}
         />
-        <p>Last Name</p>
-        <input
-          type="text"
-          placeholder="Last Name"
-          value={lastName}
+        <TextField
+          defaultValue={user.lastName}
+          size="small"
           onChange={(event) => setLastName(event.target.value)}
+          sx={{bgcolor: theme.palette.neutral.contrastText, margin: 1}}
         />
-        <p>Email</p>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
+        <TextField
+          defaultValue={user.email}
+          size="small"
           onChange={(event) => setEmail(event.target.value)}
+          sx={{bgcolor: theme.palette.neutral.contrastText, margin: 1}}
         />
-        <br />
-        <input
-          type="email"
-          placeholder="Verify Email"
-          value={undefined}
-          onChange={(event) => setEmailVerify(event.target.value)}
-        />
-        <br />
-
-        <p>Password</p>
-
-        <input
-          type="password"
+        <TextField
+        type="password"
+        label="password"
           placeholder="Password"
-          value={undefined}
+          size="small"
           onChange={(event) => setPassword(event.target.value)}
+          sx={{bgcolor: theme.palette.neutral.contrastText, margin: 1}}
         />
-        <br />
-
-        <input
-          type="password"
-          placeholder="verify password"
-          value={undefined}
+        <TextField
+        type="password"
+        label="password"
+          placeholder="Password Verify"
+          size="small"
           onChange={(event) => setPasswordVerify(event.target.value)}
+          sx={{bgcolor: theme.palette.neutral.contrastText, margin: 1}}
         />
-        <br />
-
-        <button type="submit">Update</button>
-      </form> */}
-    </>
+        <Button
+        onClick={handleSubmit}
+        color="neutral"
+        variant="contained"
+        sx={{margin: 1}}
+        >
+          Update
+        </Button>
+      </Box>
+    </Box>
   );
 }
 

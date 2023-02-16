@@ -34,14 +34,14 @@ const Navbar = () => {
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 1 }}
+              sx={{ mr: 0.5 }}
             >
               <LocalPizzaIcon />
             </IconButton>
             <Typography
               variant="h5"
               component="div"
-              sx={{ flexGrow: 1 }}
+              sx={{ flexGrow: 1, mr: 1 }}
               onClick={() => navigate(`/home`)}
             >
               Trell-O
@@ -65,7 +65,7 @@ const Navbar = () => {
               edge="start"
               color="inherit"
               aria-label="menu"
-              sx={{ mr: 2 }}
+              sx={{ mr: 0.5 }}
             >
               <LocalPizzaIcon />
             </IconButton>
