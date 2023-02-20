@@ -29,7 +29,8 @@ let theirIp = "";
 app.use((req, res, next) => {
   const clientIp = requestIp.getClientIp(req);
   theirIp = clientIp;
-  console.log(`Client IP address: ${theirIp}`);
+  const date = new Date()
+  console.log(`\n New \n Visitor \n Time: ${date}\n IP Address: ${theirIp}`);
   next();
 });
 
