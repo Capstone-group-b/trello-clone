@@ -3,6 +3,23 @@
   font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+.video-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.typography{
+  font-family: 'Roboto', sans-serif;
+  color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -15px;
+  margin-bottom: -4px;
+}
+
 html {
   background-color: #fffcf2;
 }
