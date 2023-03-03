@@ -35,7 +35,12 @@ export const authenticate = createAsyncThunk(
   "auth/authenticate",
   async ({ email, password, firstName, lastName, method }, thunkAPI) => {
     try {
-      const res = await axios.post(`/auth/${method}`, { email, password, firstName, lastName });
+      const res = await axios.post(`/auth/${method}`, {
+        email,
+        password,
+        firstName,
+        lastName,
+      });
       window.localStorage.setItem(TOKEN, res.data.token);
       thunkAPI.dispatch(me());
     } catch (err) {
@@ -50,10 +55,22 @@ export const authenticate = createAsyncThunk(
 
 export const updateTheme = createAsyncThunk(
   "auth/me/updateTheme",
-  async ({userId, theme}) => {
+  async ({ userId, theme }) => {
     try {
-      const {data} = await axios.put(`/api/users/updateTheme/${userId}`, {
+      console.log(
+        `***
+      ***
+      ***
+      Logging:Here we have the userId, and the theme
+      ***
+      ***
+      ***
+      `,
+        userId,
         theme
+      );
+      const { data } = await axios.patch(`/api/users/updateTheme/${userId}`, {
+        theme,
       });
       return data;
     } catch (err) {

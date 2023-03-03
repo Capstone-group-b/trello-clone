@@ -22,9 +22,17 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = async (evt) => {
+    evt.preventDefault()
     console.log("OnClick is working")
-    
-    await dispatch(authenticate({ email, password, method: "login" }));
+    console.log(`***
+    ***
+    ***
+    Logging:this is the email and password
+    ***
+    ***
+    ***
+    `, email, password);
+    const login = await dispatch(authenticate({ email, password, method: "login" }));
     setEmail("");
     setPassword("");
   };
@@ -57,6 +65,7 @@ const Login = () => {
           style={{ width: "200px", margin: "5px" }}
           type="email"
           label="email"
+          value={email}
           size="small"
           variant="outlined"
           onChange={(evt) => setEmail(evt.target.value)}
@@ -65,6 +74,7 @@ const Login = () => {
           style={{ width: "200px", margin: "5px" }}
           type="password"
           label="password"
+          value={password}
           size="small"
           variant="outlined"
           onChange={(evt) => setPassword(evt.target.value)}
