@@ -1,7 +1,7 @@
 const { db } = require('./db');
 // server that we already created and used as the previous entry point
 const http = require('./server.js');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 80;
 const seed = require('../seed');
 
 const init = async () => {

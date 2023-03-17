@@ -75,7 +75,7 @@ router.post(
   async (req, res, next) => {
     try {
       const { userId, thisTaskCardId: taskcardId } = req.params;
-
+      console.log(req.body);
       const thisTaskCard = await UserTaskCard.findAll({
         where: { userId: userId, taskcardId: taskcardId },
       });
